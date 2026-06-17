@@ -105,8 +105,8 @@ h2{font-size:22px;font-weight:600;color:var(--black);margin-bottom:18px;padding-
 
 /* ── News ── */
 .news-list{display:flex;flex-direction:column;gap:14px}
-#news .window{display:flex;flex-direction:column;max-height:75vh}
-#news .window-content{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain}
+#news .window{display:flex;flex-direction:column}
+#news .window-content{flex:1 1 auto}
 .news-item{padding:0 0 0 12px;background:transparent;border-left:2px solid rgba(0,0,0,0.12);line-height:1.6;transition:var(--transition)}
 .news-item.highlight{border-left-color:var(--accent-orange);border-left-width:3px;padding-left:11px}
 .news-item.highlight .date{color:var(--accent-orange)}
@@ -239,24 +239,27 @@ body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,0.3)}
         <div class="terminal-output">
           <div class="terminal-response">
             <div class="profile-header-large">
-              <div class="terminal-avatar-large">朱</div>
+              <div class="terminal-avatar-large">
+                <img src="avatar.jpg" alt="Yi Zhu" 
+                     style="width:100%;height:100%;object-fit:cover;">
+            </div>
               <div class="profile-info-large">
                 <h1>Yi Zhu <span style="font-size:22px;font-weight:400;color:var(--grey)">朱薏</span></h1>
                 <div class="role">Master's Student, Urban and Rural Planning · Nanjing University</div>
                 <div class="badges-inline">
-                  <span class="badge-terminal">
+                  <a class="badge-terminal" href="https://arch.nju.edu.cn/" target="_blank">
                     <i class="fas fa-university" style="color:#5856d6;font-size:13px"></i>
                     School of Architecture and Urban Planning, NJU
-                  </span>
+                  </a>
                   <span class="badge-terminal">
                     <i class="fas fa-user-tie" style="color:#34c759;font-size:13px"></i>
-                    Supervised by Prof. Feng Zhen &amp; Assoc. Prof. Xiao Qin
+                    Supervised by <a href="https://arch.nju.edu.cn/SAUP,NJU/PEOPLE/AssoProfessor/20230505/i245096.html" target="_blank" style="color:inherit;border-bottom:1px solid rgba(0,0,0,0.2)">Prof. Xiao Qin</a>
                   </span>
                 </div>
                 <div class="contact-links">
                   <a href="mailto:522024360145@smai.nju.edu.cn"><i class="fas fa-envelope"></i>522024360145@smai.nju.edu.cn</a>
-                  <a href="https://scholar.google.com" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>
-                  <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+                  <a href="https://scholar.google.com.hk/citations?user=PswD82kAAAAJ&hl" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>
+                  <a href="https://github.com/yizhu88" target="_blank"><i class="fab fa-github"></i>GitHub</a>
                   <a href="cv.pdf" target="_blank"><i class="fas fa-file-pdf"></i>CV</a>
                 </div>
               </div>
@@ -264,32 +267,38 @@ body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,0.3)}
 
             <div class="bio-content">
               <p>
-                Hi, I'm Yi Zhu (朱薏). I am a first-year Master's student in Urban and Rural Planning at
-                <a href="https://arch.nju.edu.cn/" target="_blank">Nanjing University</a>,
-                advised by <a href="#" target="_blank">Prof. Feng Zhen</a> and
-                <a href="#" target="_blank">Assoc. Prof. Xiao Qin</a>.
-                I am actively seeking PhD opportunities in human geography, health geography, and computational urban studies.
+                Hi, I'm Yi Zhu (朱薏). I am a Master's student in the 
+                <a href="https://arch.nju.edu.cn/" target="_blank">School of Architecture and Urban Planning at Nanjing University</a>, 
+                where I am fortunate to be supervised by 
+                <a href="https://arch.nju.edu.cn/SAUP,NJU/PEOPLE/AssoProfessor/20230505/i245096.html" target="_blank">Xiao Qin</a>. 
+                Within the Smart City group, I also receive guidance from 
+                <a href="https://arch.nju.edu.cn/SAUP,NJU/PEOPLE/Professor/20230504/i245000.html" target="_blank">Prof. Feng Zhen</a> 
+                and 
+                <a href="https://arch.nju.edu.cn/SAUP,NJU/PEOPLE/AssoProfessor/20230508/i245297.html" target="_blank">Prof. Shanqi Zhang</a>.
               </p>
+
               <p>
-                My research sits at the intersection of <strong>urban spatial inequality</strong>,
-                <strong>mixed land use</strong>, and <strong>urban renewal</strong>.
-                I integrate computational methods — including NLP/NER pipelines, knowledge graphs,
-                and LLM-based multi-agent workflows — with critical spatial theory to understand
-                how urban structure shapes social outcomes.
+                I graduated from Soochow University with a Bachelor's degree in Urban and Rural Planning, 
+                where I had the opportunity to work with 
+                <a href="https://www.feiyulab.com/" target="_blank">Prof. Fei Yu</a> 
+                on the planning history of People's Communes, and with 
+                <a href="https://scholar.google.com.hk/citations?user=NwBca1sAAAAJ&hl" target="_blank">Prof. Yasi Tian</a> 
+                on urban sprawl in the Yangtze River Delta.
               </p>
+
               <p>
-                Before planning, I completed a year of medical coursework and participated in
-                clinical observation, including a pediatric ICU internship — a background I now
-                bring to <strong>health geography research</strong> on environmental inequity
-                and mobility-based exposure assessment.
+                I am passionate about urban studies and human geography. I enjoy reading books across 
+                the social sciences, taking citywalks in culturally rich neighborhoods, and reflecting 
+                on the underlying mechanisms behind observable urban phenomena. At the same time, I am 
+                fascinated by using technological tools to explore the science embedded in cities and 
+                to investigate emerging technologies. This blend of humanistic curiosity and technical 
+                exploration shapes how I understand and engage with the urban world.
               </p>
               <p class="section-label">Research Interests</p>
               <ul class="research-list">
-                <li>Land use mix, spatial inequality, and the mixed-use inflection point (analogous to the Environmental Kuznets Curve)</li>
-                <li>Mobility-based environmental health exposure assessment correcting for UGCoP bias</li>
-                <li>LLM-assisted inference of activity context from human mobility traces</li>
-                <li>Urban renewal performance evaluation via multi-agent LLM workflows &amp; social media analysis</li>
-                <li>Historical industrial patterns and collective spatial memory (archival NLP)</li>
+                <li>Health and feminist geography: activity-based exposure, spatial inequality, and gendered mobility</li>
+                <li>Urban built environment: land use mix, urban renewal, and planning history</li>
+                <li>GeoAI and computational methods: large language models, knowledge graphs, and spatial analysis</li>
               </ul>
             </div>
           </div>
@@ -315,29 +324,19 @@ body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,0.3)}
         <h2>Recent News</h2>
         <div class="news-list">
 
+          <div class="news-item">
+            <span class="date">2026-11</span>
+            <p>Paper accepted at the <em>2026 Annual National Planning Conference</em>, Guangzhou, China. <strong>Heritage Characteristics Interpretation and Cluster Identification of Rural Collectivization Period Sites.</strong></p>
+          </div>
+
           <div class="news-item highlight">
-            <span class="date">2025-06</span>
-            <p>Paper on <strong>mixed land use and multidimensional spatial inequality</strong> across nine global urban agglomerations submitted to <em>npj Urban Sustainability</em> (under technical review). Key contribution: the "mixed-use inequality inflection point" concept.</p>
+            <span class="date">2026-07</span>
+            <p>Presented <strong>Impacts of land use mix on inequality</strong> at the <em>20th International Association for China Planning (IACP) Conference</em>, Xi'an, China.</p>
           </div>
 
           <div class="news-item">
-            <span class="date">2025-05</span>
-            <p>Presented <strong>Jiangsu Province Graduate Research and Innovation Program</strong> project on multi-agent LLM workflows for urban renewal social media analysis (Ctrip &amp; Weibo, 13 cities).</p>
-          </div>
-
-          <div class="news-item">
-            <span class="date">2025-04</span>
-            <p>Paper on <strong>urban renewal performance evaluation</strong> using LLM-based sentiment analysis submitted to <em>Land</em> (under review).</p>
-          </div>
-
-          <div class="news-item">
-            <span class="date">2025-02</span>
-            <p>Completed major revision of <strong>People's Communes in Jiangsu Province (1965)</strong> paper — integrating fine-tuned BERT, DeepSeek, knowledge graphs, K-means and XGBoost-SHAP on Waseda University Library archival data. Submitted to <em>Journal of Architecture (RIBA)</em>.</p>
-          </div>
-
-          <div class="news-item">
-            <span class="date">2024</span>
-            <p>Paper on <strong>mixed land use and commute behavior</strong> published in <em>Transportmetrica B: Transport Dynamics</em>.</p>
+            <span class="date">2025-11</span>
+            <p>Presented <strong>Impacts of 2D/3D land use mix on residents' commuting behavior</strong> at the <em>2025 Annual Conference on Territorial and Spatial Planning of China Society of Natural Resources</em>, Xiamen, China.</p>
           </div>
 
         </div>
@@ -359,66 +358,201 @@ body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,0.3)}
         </div>
       </div>
       <div class="window-content terminal-content">
+
+<style>
+.pub-filter-btn{display:inline-block;padding:5px 16px;margin:2px 0;border:1px solid rgba(0,0,0,0.2);border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;color:#424245;background:transparent;transition:all 0.2s ease;font-family:inherit}
+.pub-filter-btn:hover,.pub-filter-btn.active{background:#1d1d1f;color:#fff;border-color:#1d1d1f}
+.pub-btn-landuse{border-color:#5856d6;color:#5856d6;background:rgba(88,86,214,0.06)}
+.pub-btn-landuse:hover,.pub-btn-landuse.active{background:#5856d6;color:#fff;border-color:#5856d6}
+.pub-btn-historical{border-color:#34c759;color:#34c759;background:rgba(52,199,89,0.06)}
+.pub-btn-historical:hover,.pub-btn-historical.active{background:#34c759;color:#fff;border-color:#34c759}
+.pub-btn-inequality{border-color:#ff9500;color:#ff9500;background:rgba(255,149,0,0.06)}
+.pub-btn-inequality:hover,.pub-btn-inequality.active{background:#ff9500;color:#fff;border-color:#ff9500}
+.pub-btn-urbanai{border-color:#ff3b30;color:#ff3b30;background:rgba(255,59,48,0.06)}
+.pub-btn-urbanai:hover,.pub-btn-urbanai.active{background:#ff3b30;color:#fff;border-color:#ff3b30}
+
+.pub-entry{display:flex;gap:20px;padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.08);background:rgba(255,255,255,0.6);margin-bottom:14px;transition:all 0.25s ease;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.pub-entry:hover{box-shadow:0 4px 20px rgba(0,0,0,0.09);transform:translateY(-2px)}
+.pub-entry.pub-hidden{display:none!important}
+.pub-img{width:160px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.pub-img img{width:100%;border-radius:8px;object-fit:contain}
+.pub-img-placeholder{width:160px;min-height:100px;background:var(--lighter-grey);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--light-grey);font-size:11px;text-align:center;flex-shrink:0;padding:8px}
+.pub-body{flex:1;min-width:0}
+.pub-title{font-size:15px;font-weight:600;color:#1d1d1f;margin-bottom:8px;line-height:1.4}
+.pub-authors{font-size:13px;color:#6e6e73;font-style:italic;margin-bottom:4px}
+.pub-authors strong{color:#1d1d1f;font-style:normal;font-weight:600}
+.pub-venue{font-size:13px;color:#424245;margin-bottom:8px}
+.pub-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.pub-tag{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:500}
+.pub-tag-landuse{background:rgba(88,86,214,0.1);color:#5856d6;border:1px solid rgba(88,86,214,0.2)}
+.pub-tag-historical{background:rgba(52,199,89,0.1);color:#34c759;border:1px solid rgba(52,199,89,0.2)}
+.pub-tag-inequality{background:rgba(255,149,0,0.1);color:#ff9500;border:1px solid rgba(255,149,0,0.2)}
+.pub-tag-urbanai{background:rgba(255,59,48,0.1);color:#ff3b30;border:1px solid rgba(255,59,48,0.2)}
+.pub-status-review{color:#ff9500;font-weight:600;font-size:12px;margin-left:6px}
+.pub-status-pub{color:#34c759;font-weight:600;font-size:12px;margin-left:6px}
+.pub-links{display:flex;gap:8px;flex-wrap:wrap}
+.pub-links a{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.15);border-radius:8px;font-size:12px;font-weight:500;color:#2d2d2d;text-decoration:none;transition:all 0.2s ease}
+.pub-links a:hover{background:rgba(0,0,0,0.08);transform:translateY(-1px)}
+@media(max-width:600px){
+  .pub-entry{flex-direction:column}
+  .pub-img,.pub-img-placeholder{width:100%;min-height:120px}
+}
+</style>
+
         <h2>Selected Publications</h2>
-        <p class="section-note">* indicates equal contribution</p>
 
-        <div class="papers-list">
+        <!-- 过滤按钮 -->
+        <div style="margin-bottom:20px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+          <span style="font-size:12px;color:#6e6e73;margin-right:2px;">Area:</span>
+          <span class="pub-filter-btn active" onclick="filterPub('all',this)">All</span>
+          <span class="pub-filter-btn pub-btn-landuse" onclick="filterPub('landuse',this)">Land Use</span>
+          <span class="pub-filter-btn pub-btn-historical" onclick="filterPub('historical',this)">Historical</span>
+          <span class="pub-filter-btn pub-btn-inequality" onclick="filterPub('inequality',this)">Spatial Inequality</span>
+          <span class="pub-filter-btn pub-btn-urbanai" onclick="filterPub('urbanai',this)">Urban AI</span>
+        </div>
 
-          <!-- Paper 1 -->
-          <div class="paper-item">
-            <div class="paper-num">[1]</div>
-            <div class="paper-info">
-              <h3>Mixed Land Use, Spatial Inequality, and the Mixed-Use Inflection Point: Evidence from Nine Global Urban Agglomerations</h3>
-              <div class="paper-meta">
-                <div class="authors"><strong>Yi Zhu</strong>, Xiao Qin, Shanqi Zhang, Feng Zhen</div>
-                <div class="venue"><em>npj Urban Sustainability</em> — under technical review, 2025 <span class="tag-under-review">Under Review</span></div>
-              </div>
-              <div class="paper-links">
-                <a href="#"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
+        <div id="pub-list">
+
+          <!-- [1] Land Use + Inequality -->
+          <div class="pub-entry" data-tags="landuse inequality">
+            <div class="pub-img">
+              <img src="paper1.jpg" alt="paper">
+            </div>
+            <div class="pub-body">
+              <div class="pub-title">Mixed land use without economic absorptive capacity exacerbates multidimensional inequality</div>
+              <div class="pub-authors"><strong>Yi Zhu</strong>, Xiao Qin, Shanqi Zhang, Yuanyuan Xu, Ruotong Wu, Feng Zhen</div>
+              <div class="pub-venue"><em>npj Urban Sustainability</em><span class="pub-status-review">Under Review</span></div>
+              <div class="pub-tags">
+                <span class="pub-tag pub-tag-landuse">Land Use</span>
+                <span class="pub-tag pub-tag-inequality">Spatial Inequality</span>
               </div>
             </div>
           </div>
 
-          <!-- Paper 2 -->
-          <div class="paper-item">
-            <div class="paper-num">[2]</div>
-            <div class="paper-info">
-              <h3>Urban Renewal Performance Evaluation Using LLM-Based Sentiment Analysis: Evidence from 13 Jiangsu Cities</h3>
-              <div class="paper-meta">
-                <div class="authors"><strong>Yi Zhu</strong>, [co-authors]</div>
-                <div class="venue"><em>Land</em> — under review, 2025 <span class="tag-under-review">Under Review</span></div>
+          <!-- [2] Land Use -->
+          <div class="pub-entry" data-tags="landuse">
+            <div class="pub-img">
+              <img src="paper2.jpg" alt="paper">
+            </div>
+            <div class="pub-body">
+              <div class="pub-title">How is commute mode choice related to 2D/3D land use mix? A Case Study of Central Suqian City</div>
+              <div class="pub-authors"><strong>Yi Zhu</strong>, Xiao Qin, Ruotong Wu, Feng Zhen</div>
+              <div class="pub-venue"><em>Transportmetrica B: Transport Dynamics</em> · <a href="https://doi.org/10.1080/21680566.2026.2622498" target="_blank" style="color:#34c759;text-decoration:none;border-bottom:1px solid rgba(52,199,89,0.3);">Published</a></div>
+              <div class="pub-tags">
+                <span class="pub-tag pub-tag-landuse">Land Use</span>
               </div>
-              <div class="paper-links">
-                <a href="#"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
+              <div class="pub-links">
+                <a href="paper2.pdf" target="_blank"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
               </div>
             </div>
           </div>
 
-          <!-- Paper 3 -->
-          <div class="paper-item">
-            <div class="paper-num">[3]</div>
-            <div class="paper-info">
-              <h3>Historical Industrial Patterns and Collective Spatial Memory: People's Communes in Jiangsu Province (1965)</h3>
-              <div class="paper-meta">
-                <div class="authors"><strong>Yi Zhu</strong>, [co-authors]</div>
-                <div class="venue"><em>Journal of Architecture (RIBA)</em> — under review, 2025 <span class="tag-under-review">Under Review</span></div>
+          <!-- [3] Historical + Inequality -->
+          <div class="pub-entry" data-tags="historical inequality">
+            <div class="pub-img">
+              <img src="paper3.jpg" alt="paper">
+            </div>
+            <div class="pub-body">
+              <div class="pub-title">Spatial Patterns and Influencing Factors of People's Commune Sites: A Case Study of Henan Province, China</div>
+              <div class="pub-authors"><strong>Yi Zhu</strong>, Yasi Tian, Guoyan Tang, Dantong Zheng, Fei Yu</div>
+              <div class="pub-venue"><em>Land</em> · <a href="https://doi.org/10.3390/land13111860" target="_blank" style="color:#34c759;text-decoration:none;border-bottom:1px solid rgba(52,199,89,0.3);">Published</a></div>
+              <div class="pub-tags">
+                <span class="pub-tag pub-tag-historical">Historical</span>
+                <span class="pub-tag pub-tag-inequality">Spatial Inequality</span>
               </div>
-              <div class="paper-links">
-                <a href="#"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
+              <div class="pub-links">
+                <a href="paper3.pdf" target="_blank"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- [4] Historical -->
+          <div class="pub-entry" data-tags="historical">
+            <div class="pub-img">
+              <img src="paper4.jpg" alt="paper">
+            </div>
+            <div class="pub-body">
+              <div class="pub-title">Socialist modernism as a grand narrative: a historical review of people’s commune housing design (1958–1983)</div>
+              <div class="pub-authors">Fei Yu, <strong>Yi Zhu</strong>, Lu Ye</div>
+              <div class="pub-venue"><em>Journal of Architecture</em> · <a href="https://doi.org/10.1080/13602365.2026.2628019" target="_blank" style="color:#34c759;text-decoration:none;border-bottom:1px solid rgba(52,199,89,0.3);">Published</a></div>
+              <div class="pub-tags">
+                <span class="pub-tag pub-tag-historical">Historical</span>
+              </div>
+              <div class="pub-links">
+                <a href="paper4.pdf" target="_blank"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- [5] Historical + Inequality + Urban AI -->
+          <div class="pub-entry" data-tags="historical inequality urbanai">
+            <div class="pub-img">
+              <img src="paper5.jpg" alt="paper">
+            </div>
+            <div class="pub-body">
+              <div class="pub-title">Rural Heritage under Socialism: Analyzing Distribution, Characteristics, and Impact of China's People's Communes with Large Language Models and Knowledge Graphs</div>
+              <div class="pub-authors">Fei Yu, <strong>Yi Zhu</strong>, Xukai Zhao, Xiao Qin</div>
+              <div class="pub-venue"><em>Journal of Asian Architecture and Building Engineering</em><span class="pub-status-review">Under Review</span></div>
+              <div class="pub-tags">
+                <span class="pub-tag pub-tag-historical">Historical</span>
+                <span class="pub-tag pub-tag-inequality">Spatial Inequality</span>
+                <span class="pub-tag pub-tag-urbanai">Urban AI</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- [6] Land Use -->
+          <div class="pub-entry" data-tags="landuse">
+            <div class="pub-img">
+              <img src="paper6.jpg" alt="paper">
+            </div>
+            <div class="pub-body">
+              <div class="pub-title">Measuring the Urban Sprawl of a Mega-Urban Agglomeration Area Based on Multi-Dimensions with a Mechanical Equilibrium Model: A Case Study of the Yangtze River Delta, China</div>
+              <div class="pub-authors">Yuneng Jiang, <strong>Yi Zhu</strong>, Yasi Tian</div>
+              <div class="pub-venue"><em>Land</em> · <a href="https://doi.org/10.3390/land12081548" target="_blank" style="color:#34c759;text-decoration:none;border-bottom:1px solid rgba(52,199,89,0.3);">Published</a></div>
+              <div class="pub-tags">
+                <span class="pub-tag pub-tag-landuse">Land Use</span>
+              </div>
+              <div class="pub-links">
+                <a href="paper6.pdf" target="_blank"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- [7] Historical -->
+          <div class="pub-entry" data-tags="historical">
+            <div class="pub-img">
+              <img src="paper7.jpg" alt="paper">
+            </div>
+            <div class="pub-body">
+              <div class="pub-title">Revitalizing Township Industrial Heritage: Adaptive Reuse Strategies Based on the Practice of Jiangsu Jinshiyuan Liquor Industry Co., Ltd.</div>
+              <div class="pub-authors">Fei Yu, <strong>Yi Zhu</strong>, Dantong Zheng</div>
+              <div class="pub-venue"><em>Huazhong Architecture</em> (华中建筑) · <a href="https://doi.org/10.13942/j.cnki.hzjz.2024.10.027" target="_blank" style="color:#34c759;text-decoration:none;border-bottom:1px solid rgba(52,199,89,0.3);">Published</a></div>
+              <div class="pub-tags">
+                <span class="pub-tag pub-tag-historical">Historical</span>
+              </div>
+              <div class="pub-links">
+                <a href="paper7.pdf" target="_blank"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
               </div>
             </div>
           </div>
 
         </div>
 
-        <div class="section-subtitle">Early Publications (Before Master's)</div>
-        <ul class="simple-list">
-          <li>
-            <div class="early-pub-title">[Title of Transportmetrica B paper on mixed land use and commute behavior]</div>
-            <div class="early-pub-authors"><strong>Yi Zhu</strong>, [co-authors]</div>
-            <div class="early-pub-venue"><em>Transportmetrica B: Transport Dynamics</em>, 2024 <span class="tag-published">Published</span></div>
-          </li>
-        </ul>
+        <script>
+        function filterPub(tag, btn) {
+          document.querySelectorAll('.pub-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          document.querySelectorAll('#pub-list .pub-entry').forEach(item => {
+            if (tag === 'all') {
+              item.classList.remove('pub-hidden');
+            } else {
+              const tags = item.getAttribute('data-tags').split(' ');
+              tags.includes(tag) ? item.classList.remove('pub-hidden') : item.classList.add('pub-hidden');
+            }
+          });
+        }
+        </script>
 
       </div>
     </div>
