@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yi Zhu - Nanjing University</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#1d1d1f;
+  --dark-grey:#424245;
+  --grey:#6e6e73;
+  --light-grey:#d2d2d7;
+  --lighter-grey:#e8e8ed;
+  --white:#ffffff;
+  --off-white:#fbfbfd;
+  --accent-blue:#6e6e73;
+  --accent-purple:#5856d6;
+  --accent-green:#34c759;
+  --accent-orange:#ff9500;
+  --desktop-bg:#ffffff;
+  --sidebar-bg:rgba(248,248,250,0.85);
+  --topbar-bg:rgba(255,255,255,0.8);
+  --glass-bg:rgba(255,255,255,0.7);
+  --glass-border:rgba(0,0,0,0.08);
+  --shadow-sm:0 2px 8px rgba(0,0,0,0.04);
+  --shadow:0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.12);
+  --transition:all 0.3s cubic-bezier(0.4,0,0.2,1)
+}
+html{scroll-behavior:smooth;font-size:15px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;background:var(--desktop-bg);color:var(--dark-grey);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ── Top Bar ── */
+.top-bar{position:fixed;top:0;left:0;right:0;height:24px;background:var(--topbar-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,0.1);display:flex;justify-content:space-between;align-items:center;padding:0 8px;font-size:11px;color:var(--dark-grey);z-index:1000;box-shadow:0 1px 0 rgba(0,0,0,0.05)}
+.top-bar-left{display:flex;align-items:center;gap:6px}
+.app-name{font-weight:500}
+.top-bar-center{position:absolute;left:50%;transform:translateX(-50%)}
+.status-info{display:flex;align-items:center;gap:12px}
+.status-badge{display:flex;align-items:center;gap:4px;padding:2px 8px;background:rgba(52,199,89,0.15);border-radius:10px;border:1px solid rgba(52,199,89,0.3)}
+.status-dot{width:6px;height:6px;background:#34c759;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.15)}}
+.status-text{font-size:9px;color:#28a745;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.location-info{font-size:12px;color:#6e6e73;font-weight:500;white-space:nowrap}
+.time{font-size:10px}
+.top-bar-right{display:flex;align-items:center;gap:10px;font-size:10px}
+
+/* ── Sidebar ── */
+.sidebar{position:fixed;top:24px;left:0;width:80px;height:calc(100vh - 24px);background:var(--sidebar-bg);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border-right:1px solid rgba(0,0,0,0.1);z-index:999}
+.launcher{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:6px 0;gap:4px}
+.launcher-icon{width:70px;padding:8px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--grey);font-size:20px;text-decoration:none;border-radius:8px;transition:var(--transition);position:relative;cursor:pointer;user-select:none;-webkit-user-select:none}
+.launcher-icon i{font-size:20px}
+.launcher-text{font-size:11px;font-weight:500;letter-spacing:-0.01em;white-space:nowrap}
+.launcher-icon::before{content:"";position:absolute;left:-6px;top:50%;transform:translateY(-50%);width:0;height:0;background:var(--accent-blue);border-radius:2px;transition:var(--transition)}
+.launcher-icon:hover{background:rgba(0,0,0,0.05);color:var(--dark-grey)}
+.launcher-icon.active{background:rgba(0,0,0,0.08);color:var(--black)}
+.launcher-icon.active::before{width:3px;height:40px}
+.launcher-icon:hover::before{width:3px;height:32px}
+
+/* ── Main Content ── */
+.main-content{background:var(--desktop-bg);margin-top:24px;padding:24px 48px;max-width:1200px;margin-left:auto;margin-right:auto;padding-left:calc(80px + 48px)}
+.section{scroll-margin-top:24px;margin-bottom:16px}
+
+/* ── Window ── */
+.window{max-width:100%;margin:0;background:var(--glass-bg);backdrop-filter:blur(30px) saturate(150%);-webkit-backdrop-filter:blur(30px) saturate(150%);border-radius:12px;box-shadow:var(--shadow);border:1px solid var(--glass-border)}
+.window-header{background:rgba(255,255,255,0.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.06);border-radius:12px 12px 0 0;padding:6px 12px;display:flex;align-items:center;gap:10px;height:32px}
+.window-controls{display:flex;gap:8px}
+.control{width:12px;height:12px;border-radius:50%;cursor:pointer;border:none;transition:var(--transition);opacity:1}
+.control.close{background:#ff5f56}
+.control.minimize{background:#ffbd2e}
+.control.maximize{background:#27c93f}
+.control:hover{filter:brightness(0.95);transform:scale(1.1)}
+.window-title{font-weight:500;font-size:13px;color:var(--dark-grey);display:flex;align-items:center;gap:6px;letter-spacing:-0.01em}
+.window-title i{font-size:13px;color:var(--accent-blue)}
+.window-content{background:transparent;padding:24px 32px}
+.terminal-content{background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-size:14px;line-height:1.6;color:#2d2d2d;padding:24px;border-radius:0 0 12px 12px}
+.terminal-output{max-width:100%}
+.terminal-response{margin:12px 0 20px 0;padding-left:0;color:#2d2d2d}
+
+/* ── Profile ── */
+.profile-header-large{display:flex;align-items:center;gap:28px;margin-bottom:24px;padding:0}
+.terminal-avatar-large{width:160px;height:160px;border-radius:50%;border:4px solid rgba(0,0,0,0.08);flex-shrink:0;overflow:hidden;background:var(--lighter-grey);display:flex;align-items:center;justify-content:center;font-size:60px;font-weight:600;color:var(--grey)}
+.profile-info-large h1{font-size:36px;color:#1d1d1f;margin:0 0 10px 0;font-weight:600;letter-spacing:-0.03em}
+.profile-info-large .role{font-size:17px;color:#6e6e73;margin:0 0 14px 0;font-weight:400}
+.badges-inline{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.badge-terminal{background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.1);padding:5px 10px;border-radius:6px;font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:8px;color:#2d2d2d;text-decoration:none}
+.badge-terminal:hover{background:rgba(0,0,0,0.08);border-color:rgba(0,0,0,0.2);color:#2d2d2d}
+
+/* ── Contact Links ── */
+.contact-links{display:flex;gap:16px;flex-wrap:wrap;padding:16px 0;margin-bottom:24px;border-bottom:1px solid rgba(0,0,0,0.06)}
+.contact-links a{font-size:14px;display:flex;align-items:center;gap:7px;color:#6e6e73;text-decoration:none;transition:var(--transition)}
+.contact-links a:hover{color:#2d2d2d}
+.contact-links i{font-size:14px}
+.bio-content{margin-top:0}
+.terminal-response p{margin-bottom:14px;color:#2d2d2d;line-height:1.7;font-size:15px}
+.terminal-response strong{color:#1d1d1f;font-weight:600}
+.terminal-response a{color:#6e6e73;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2);transition:var(--transition)}
+.terminal-response a:hover{color:#2d2d2d;border-bottom-color:#2d2d2d}
+
+/* ── Section headings ── */
+h2{font-size:22px;font-weight:600;color:var(--black);margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,0.08);letter-spacing:-0.02em}
+.section-subtitle{font-size:19px;font-weight:600;color:var(--black);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,0.06);letter-spacing:-0.01em}
+.section-label{font-weight:600;margin-top:0;padding-top:24px;border-top:1px solid rgba(0,0,0,0.06)}
+.section-note{margin:-6px 0 12px;font-size:12px;color:#6e6e73}
+
+/* ── News ── */
+.news-list{display:flex;flex-direction:column;gap:14px}
+#news .window{display:flex;flex-direction:column;max-height:75vh}
+#news .window-content{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain}
+.news-item{padding:0 0 0 12px;background:transparent;border-left:2px solid rgba(0,0,0,0.12);line-height:1.6;transition:var(--transition)}
+.news-item.highlight{border-left-color:var(--accent-orange);border-left-width:3px;padding-left:11px}
+.news-item.highlight .date{color:var(--accent-orange)}
+.date{font-size:12px;color:var(--grey);font-weight:600;display:inline;margin-right:8px}
+.news-item p{display:inline;font-size:14px;line-height:1.6;color:var(--dark-grey)}
+.news-item em{font-style:italic;color:var(--black);font-weight:500}
+.news-item strong{font-weight:600;color:var(--black)}
+.news-item a{color:#6e6e73;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.2);transition:var(--transition)}
+.news-item a:hover{color:#2d2d2d;border-bottom-color:#2d2d2d}
+
+/* ── Papers ── */
+.papers-list{display:flex;flex-direction:column;gap:14px}
+.paper-item{display:flex;gap:18px;padding:16px;background:rgba(255,255,255,0.5);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.3);border-radius:12px;transition:var(--transition);box-shadow:var(--shadow-sm)}
+.paper-item:hover{background:rgba(255,255,255,0.7);box-shadow:var(--shadow);transform:translateY(-2px)}
+.paper-num{flex-shrink:0;width:28px;font-size:12px;color:var(--grey);padding-top:4px;text-align:right}
+.paper-info{flex:1}
+.paper-info h3{font-size:17px;font-weight:600;color:var(--black);margin-bottom:10px;line-height:1.4;letter-spacing:-0.01em}
+.paper-meta{display:flex;flex-direction:column;gap:3px;margin-bottom:12px}
+.authors{font-size:14px;color:var(--grey);font-style:italic}
+.authors strong{font-weight:600;color:#1d1d1f;font-style:normal}
+.venue{font-size:14px;color:var(--dark-grey);font-weight:500}
+.award{color:#ff3b30;font-weight:600}
+.paper-links{display:flex;gap:10px;flex-wrap:wrap}
+.paper-links a{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.15);border-radius:8px;font-size:13px;font-weight:500;color:#2d2d2d;text-decoration:none;transition:var(--transition);user-select:none;-webkit-user-select:none}
+.paper-links a:hover{background:rgba(0,0,0,0.08);border-color:rgba(0,0,0,0.25);color:#2d2d2d;transform:translateY(-1px)}
+.tag-under-review{color:#ff9500;font-weight:600;font-size:12px;margin-left:6px}
+.tag-published{color:#34c759;font-weight:600;font-size:12px;margin-left:6px}
+
+/* ── Simple list ── */
+.simple-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px}
+.simple-list li{padding:0;margin:0;background:transparent;line-height:1.5}
+.early-pub-title{font-size:14px;font-weight:600;color:#1d1d1f;margin-bottom:4px;line-height:1.5}
+.early-pub-authors{font-size:13px;color:#6e6e73;margin-bottom:3px;line-height:1.5;font-style:italic}
+.early-pub-authors strong{font-weight:600;color:#1d1d1f}
+.early-pub-venue{font-size:13px;color:#2d2d2d;line-height:1.5}
+
+/* ── Research list ── */
+.research-list{list-style:none;padding:0;margin:0;padding-left:20px}
+.research-list li{padding:8px 0;color:#2d2d2d;line-height:1.7;font-size:15px;position:relative}
+.research-list li::before{content:"•";position:absolute;left:-20px;color:#2d2d2d}
+
+/* ── Footer ── */
+.visitor-footer{margin-top:32px;padding:32px 0;background:rgba(248,248,250,0.5);border-top:1px solid rgba(0,0,0,0.06)}
+.visitor-footer-content{max-width:1200px;margin:0 auto;padding:0 calc(80px + 48px) 0 calc(80px + 48px);font-size:13px;color:var(--grey);text-align:center}
+
+/* ── Scrollbar ── */
+body::-webkit-scrollbar{width:12px}
+body::-webkit-scrollbar-track{background:transparent}
+body::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.2);border-radius:6px;border:3px solid var(--desktop-bg)}
+body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,0.3)}
+
+/* ── Responsive ── */
+@media (max-width:768px){
+  .sidebar{width:70px}
+  .main-content{margin-top:28px;padding:20px 24px;padding-left:calc(70px + 24px)}
+  .profile-header-large{flex-direction:column;align-items:center;text-align:center;gap:20px}
+  .terminal-avatar-large{width:120px;height:120px;font-size:44px}
+  .profile-info-large h1{font-size:28px}
+  .paper-item{flex-direction:column}
+}
+@media (max-width:480px){
+  .sidebar{top:auto;bottom:0;left:0;right:0;width:100%;height:64px;border-right:none;border-top:1px solid rgba(0,0,0,0.1)}
+  .launcher{flex-direction:row;justify-content:space-around;height:100%;padding:0;gap:0}
+  .launcher-icon{flex:1;max-width:none;min-height:44px}
+  .launcher-icon::before{left:50%;top:auto;bottom:-1px;transform:translateX(-50%);width:0;height:0}
+  .launcher-icon.active::before{width:50%;height:3px}
+  .main-content{margin-top:28px;margin-bottom:64px;padding:12px 16px}
+  .contact-links{flex-direction:column;gap:10px}
+}
+</style>
+
+<!-- ── Top Bar ── -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <span class="app-name">yizhu@nju.edu.cn</span>
+  </div>
+  <div class="top-bar-center">
+    <div class="status-info">
+      <span class="status-badge">
+        <span class="status-dot"></span>
+        <span class="status-text">Active</span>
+      </span>
+      <span class="location-info">📍 Nanjing · 🔍 Prospective PhD 2027</span>
+    </div>
+  </div>
+  <div class="top-bar-right">
+    <span class="time" id="current-time"></span>
+  </div>
+</div>
+
+<!-- ── Sidebar ── -->
+<div class="sidebar">
+  <div class="launcher">
+    <a class="launcher-icon active" href="#home" title="About Me">
+      <i class="fas fa-home"></i>
+      <span class="launcher-text">About</span>
+    </a>
+    <a class="launcher-icon" href="#news" title="News">
+      <i class="fas fa-newspaper"></i>
+      <span class="launcher-text">News</span>
+    </a>
+    <a class="launcher-icon" href="#research" title="Research">
+      <i class="fas fa-flask"></i>
+      <span class="launcher-text">Research</span>
+    </a>
+    <a class="launcher-icon" href="#contact" title="Contact">
+      <i class="fas fa-envelope"></i>
+      <span class="launcher-text">Contact</span>
+    </a>
+  </div>
+</div>
+
+<!-- ── Main Content ── -->
+<main class="main-content">
+
+  <!-- About -->
+  <section class="section" id="home">
+    <div class="window">
+      <div class="window-header">
+        <div class="window-controls">
+          <span class="control close"></span>
+          <span class="control minimize"></span>
+          <span class="control maximize"></span>
+        </div>
+        <div class="window-title">
+          <i class="fas fa-user-circle"></i> About Me
+        </div>
+      </div>
+      <div class="window-content terminal-content">
+        <div class="terminal-output">
+          <div class="terminal-response">
+            <div class="profile-header-large">
+              <div class="terminal-avatar-large">朱</div>
+              <div class="profile-info-large">
+                <h1>Yi Zhu <span style="font-size:22px;font-weight:400;color:var(--grey)">朱薏</span></h1>
+                <div class="role">Master's Student, Urban and Rural Planning · Nanjing University</div>
+                <div class="badges-inline">
+                  <span class="badge-terminal">
+                    <i class="fas fa-university" style="color:#5856d6;font-size:13px"></i>
+                    School of Architecture and Urban Planning, NJU
+                  </span>
+                  <span class="badge-terminal">
+                    <i class="fas fa-user-tie" style="color:#34c759;font-size:13px"></i>
+                    Supervised by Prof. Feng Zhen &amp; Assoc. Prof. Xiao Qin
+                  </span>
+                </div>
+                <div class="contact-links">
+                  <a href="mailto:522024360145@smai.nju.edu.cn"><i class="fas fa-envelope"></i>522024360145@smai.nju.edu.cn</a>
+                  <a href="https://scholar.google.com" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>
+                  <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+                  <a href="cv.pdf" target="_blank"><i class="fas fa-file-pdf"></i>CV</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="bio-content">
+              <p>
+                Hi, I'm Yi Zhu (朱薏). I am a first-year Master's student in Urban and Rural Planning at
+                <a href="https://arch.nju.edu.cn/" target="_blank">Nanjing University</a>,
+                advised by <a href="#" target="_blank">Prof. Feng Zhen</a> and
+                <a href="#" target="_blank">Assoc. Prof. Xiao Qin</a>.
+                I am actively seeking PhD opportunities in human geography, health geography, and computational urban studies.
+              </p>
+              <p>
+                My research sits at the intersection of <strong>urban spatial inequality</strong>,
+                <strong>mixed land use</strong>, and <strong>urban renewal</strong>.
+                I integrate computational methods — including NLP/NER pipelines, knowledge graphs,
+                and LLM-based multi-agent workflows — with critical spatial theory to understand
+                how urban structure shapes social outcomes.
+              </p>
+              <p>
+                Before planning, I completed a year of medical coursework and participated in
+                clinical observation, including a pediatric ICU internship — a background I now
+                bring to <strong>health geography research</strong> on environmental inequity
+                and mobility-based exposure assessment.
+              </p>
+              <p class="section-label">Research Interests</p>
+              <ul class="research-list">
+                <li>Land use mix, spatial inequality, and the mixed-use inflection point (analogous to the Environmental Kuznets Curve)</li>
+                <li>Mobility-based environmental health exposure assessment correcting for UGCoP bias</li>
+                <li>LLM-assisted inference of activity context from human mobility traces</li>
+                <li>Urban renewal performance evaluation via multi-agent LLM workflows &amp; social media analysis</li>
+                <li>Historical industrial patterns and collective spatial memory (archival NLP)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="section" id="news">
+    <div class="window">
+      <div class="window-header">
+        <div class="window-controls">
+          <span class="control close"></span>
+          <span class="control minimize"></span>
+          <span class="control maximize"></span>
+        </div>
+        <div class="window-title">
+          <i class="fas fa-newspaper"></i> News
+        </div>
+      </div>
+      <div class="window-content terminal-content">
+        <h2>Recent News</h2>
+        <div class="news-list">
+
+          <div class="news-item highlight">
+            <span class="date">2025-06</span>
+            <p>Paper on <strong>mixed land use and multidimensional spatial inequality</strong> across nine global urban agglomerations submitted to <em>npj Urban Sustainability</em> (under technical review). Key contribution: the "mixed-use inequality inflection point" concept.</p>
+          </div>
+
+          <div class="news-item">
+            <span class="date">2025-05</span>
+            <p>Presented <strong>Jiangsu Province Graduate Research and Innovation Program</strong> project on multi-agent LLM workflows for urban renewal social media analysis (Ctrip &amp; Weibo, 13 cities).</p>
+          </div>
+
+          <div class="news-item">
+            <span class="date">2025-04</span>
+            <p>Paper on <strong>urban renewal performance evaluation</strong> using LLM-based sentiment analysis submitted to <em>Land</em> (under review).</p>
+          </div>
+
+          <div class="news-item">
+            <span class="date">2025-02</span>
+            <p>Completed major revision of <strong>People's Communes in Jiangsu Province (1965)</strong> paper — integrating fine-tuned BERT, DeepSeek, knowledge graphs, K-means and XGBoost-SHAP on Waseda University Library archival data. Submitted to <em>Journal of Architecture (RIBA)</em>.</p>
+          </div>
+
+          <div class="news-item">
+            <span class="date">2024</span>
+            <p>Paper on <strong>mixed land use and commute behavior</strong> published in <em>Transportmetrica B: Transport Dynamics</em>.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section class="section" id="research">
+    <div class="window">
+      <div class="window-header">
+        <div class="window-controls">
+          <span class="control close"></span>
+          <span class="control minimize"></span>
+          <span class="control maximize"></span>
+        </div>
+        <div class="window-title">
+          <i class="fas fa-flask"></i> Research
+        </div>
+      </div>
+      <div class="window-content terminal-content">
+        <h2>Selected Publications</h2>
+        <p class="section-note">* indicates equal contribution</p>
+
+        <div class="papers-list">
+
+          <!-- Paper 1 -->
+          <div class="paper-item">
+            <div class="paper-num">[1]</div>
+            <div class="paper-info">
+              <h3>Mixed Land Use, Spatial Inequality, and the Mixed-Use Inflection Point: Evidence from Nine Global Urban Agglomerations</h3>
+              <div class="paper-meta">
+                <div class="authors"><strong>Yi Zhu</strong>, Xiao Qin, Shanqi Zhang, Feng Zhen</div>
+                <div class="venue"><em>npj Urban Sustainability</em> — under technical review, 2025 <span class="tag-under-review">Under Review</span></div>
+              </div>
+              <div class="paper-links">
+                <a href="#"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paper 2 -->
+          <div class="paper-item">
+            <div class="paper-num">[2]</div>
+            <div class="paper-info">
+              <h3>Urban Renewal Performance Evaluation Using LLM-Based Sentiment Analysis: Evidence from 13 Jiangsu Cities</h3>
+              <div class="paper-meta">
+                <div class="authors"><strong>Yi Zhu</strong>, [co-authors]</div>
+                <div class="venue"><em>Land</em> — under review, 2025 <span class="tag-under-review">Under Review</span></div>
+              </div>
+              <div class="paper-links">
+                <a href="#"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paper 3 -->
+          <div class="paper-item">
+            <div class="paper-num">[3]</div>
+            <div class="paper-info">
+              <h3>Historical Industrial Patterns and Collective Spatial Memory: People's Communes in Jiangsu Province (1965)</h3>
+              <div class="paper-meta">
+                <div class="authors"><strong>Yi Zhu</strong>, [co-authors]</div>
+                <div class="venue"><em>Journal of Architecture (RIBA)</em> — under review, 2025 <span class="tag-under-review">Under Review</span></div>
+              </div>
+              <div class="paper-links">
+                <a href="#"><i class="fas fa-file-alt" style="color:#ff3b30"></i>Paper</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="section-subtitle">Early Publications (Before Master's)</div>
+        <ul class="simple-list">
+          <li>
+            <div class="early-pub-title">[Title of Transportmetrica B paper on mixed land use and commute behavior]</div>
+            <div class="early-pub-authors"><strong>Yi Zhu</strong>, [co-authors]</div>
+            <div class="early-pub-venue"><em>Transportmetrica B: Transport Dynamics</em>, 2024 <span class="tag-published">Published</span></div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="window">
+      <div class="window-header">
+        <div class="window-controls">
+          <span class="control close"></span>
+          <span class="control minimize"></span>
+          <span class="control maximize"></span>
+        </div>
+        <div class="window-title">
+          <i class="fas fa-envelope"></i> Contact
+        </div>
+      </div>
+      <div class="window-content terminal-content">
+        <h2>Contact</h2>
+        <div class="terminal-response">
+          <p>
+            I am open to conversations about PhD opportunities (2026 intake), research
+            collaboration, and peer review. The best way to reach me is by email.
+          </p>
+          <p>
+            <strong>Email:</strong> <a href="mailto:522024360145@smai.nju.edu.cn">522024360145@smai.nju.edu.cn</a><br>
+            <strong>Institution:</strong> School of Architecture and Urban Planning, Nanjing University<br>
+            <strong>Location:</strong> Nanjing, Jiangsu, China
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="visitor-footer">
+  <div class="visitor-footer-content">
+    © 2025 Yi Zhu · Last updated June 2025 · Hosted on <a href="https://pages.github.com/" target="_blank" style="color:var(--grey)">GitHub Pages</a>
+  </div>
+</footer>
+
+<script>
+// Clock
+function updateTime() {
+  const now = new Date();
+  const h = now.getHours().toString().padStart(2,'0');
+  const m = now.getMinutes().toString().padStart(2,'0');
+  document.getElementById('current-time').textContent = h + ':' + m;
+}
+updateTime();
+setInterval(updateTime, 30000);
+
+// Sidebar active state on scroll
+const sections = document.querySelectorAll('section[id]');
+const icons = document.querySelectorAll('.launcher-icon');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      icons.forEach(i => i.classList.remove('active'));
+      const target = document.querySelector('.launcher-icon[href="#' + e.target.id + '"]');
+      if (target) target.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => obs.observe(s));
+</script>
+</html>
